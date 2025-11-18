@@ -1,6 +1,3 @@
-<img width="667" height="742" alt="image" src="https://github.com/user-attachments/assets/698e64e6-cce8-42c5-9090-58e76ba485fc" /># DE-Involves
-Teste Data Engineer
-
 ---
 
 # **Projeto de ETL com Pentaho Data Integration (PDI) — Modelo Dimensional**
@@ -145,13 +142,3 @@ Regras aplicadas:
 <img width="586" height="606" alt="image" src="https://github.com/user-attachments/assets/873c44fb-add2-429e-8d29-a1763ca8e644" />
 <img width="680" height="770" alt="image" src="https://github.com/user-attachments/assets/84f82335-aea9-46eb-9dbf-31119b473a34" />
 <img width="564" height="620" alt="image" src="https://github.com/user-attachments/assets/bc00d001-12ff-4d90-a751-43fa4e207193" />
-
-
-
-
-
-
-
-
-
-Se quiser, posso deixar ainda mais bonito com badges, instruções de contribuição, ou até montar uma versão em inglês pro repositório.
