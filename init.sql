@@ -1,32 +1,18 @@
-CREATE TABLE public.ft_ponto_extra (
-    id_ponto_venda     BIGINT   NOT NULL,
-    id_linha_produto   BIGINT   NOT NULL,
-    mes                INTEGER  NOT NULL,
-    ano                INTEGER  NOT NULL,
-    soma_pontos        INTEGER  NOT NULL
-);
+-- ============================================
+-- DROP TABLES (se existirem)
+-- ============================================
+DROP TABLE IF EXISTS public.ft_ponto_extra CASCADE;
+DROP TABLE IF EXISTS public.ft_ponto_extra_agregada CASCADE;
+DROP TABLE IF EXISTS public.ft_disponibilidade CASCADE;
+DROP TABLE IF EXISTS public.ft_disponibilidade_agregada CASCADE;
 
-CREATE TABLE public.ft_ponto_extra_agregada (
-    id_ponto_venda  BIGINT   NOT NULL,
-    mes             INTEGER  NOT NULL,
-    ano             INTEGER  NOT NULL,
-    soma_pontos     INTEGER  NOT NULL
-);
+DROP TABLE IF EXISTS public.dim_pdv CASCADE;
+DROP TABLE IF EXISTS public.dim_linha_produto CASCADE;
+DROP TABLE IF EXISTS public.dim_calendario CASCADE;
 
-CREATE TABLE public.ft_disponibilidade_agregada (
-    id_ponto_venda   BIGINT   NOT NULL,
-    ano              INTEGER  NOT NULL,
-    mes              INTEGER  NOT NULL,
-    quantidade       INTEGER  NOT NULL
-);
-
-CREATE TABLE public.ft_disponibilidade (
-    id_ponto_venda     BIGINT       NOT NULL,
-    id_linha_produto   BIGINT       NOT NULL,
-    mes                INTEGER      NOT NULL,
-    ano                INTEGER      NOT NULL,
-    quantidade         INTEGER      NOT NULL
-);
+-- ============================================
+-- CREATE TABLES
+-- ============================================
 
 CREATE TABLE public.dim_pdv (
     id_ponto_venda INTEGER,
@@ -41,7 +27,33 @@ CREATE TABLE public.dim_linha_produto (
 );
 
 CREATE TABLE public.dim_calendario (
-    data_ref VARCHAR(50), 
+    data_ref DATE,
     mes INTEGER,
-    ano INTEGE
+    ano INTEGER
+);
+
+CREATE TABLE public.ft_ponto_extra (
+    id_ponto_venda     BIGINT   NOT NULL,
+    id_linha_produto   BIGINT   NOT NULL,
+    data_ref DATE,
+    soma_pontos        INTEGER  NOT NULL
+);
+
+CREATE TABLE public.ft_ponto_extra_agregada (
+    id_ponto_venda  BIGINT   NOT NULL,
+    data_ref DATE,
+    soma_pontos     INTEGER  NOT NULL
+);
+
+CREATE TABLE public.ft_disponibilidade (
+    id_ponto_venda     BIGINT       NOT NULL,
+    id_linha_produto   BIGINT       NOT NULL,
+    data_ref DATE,
+    quantidade         INTEGER      NOT NULL
+);
+
+CREATE TABLE public.ft_disponibilidade_agregada (
+    id_ponto_venda   BIGINT   NOT NULL,
+    data_ref DATE,
+    quantidade       INTEGER  NOT NULL
 );
