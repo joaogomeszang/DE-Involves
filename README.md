@@ -6,7 +6,7 @@ Meu perfil Github certo: https://github.com/joaozang (Estou recuperando ele :dis
 Este projeto apresenta a construção de um processo ETL utilizando **Pentaho Data Integration (PDI)** para ingestão, transformação e carga de dados referentes a coletas realizadas em pontos de venda, com base no dataset `DATASET_TESTE_DE.csv`.
 Além disso, inclui a criação de um **modelo dimensional** no PostgreSQL e um **job principal** orquestrando todas as transformações.
 
-*Optei por manter todas as tabelas de fato em granularidade diária, para garantir que o modelo preserve a granularidade original do dataset mantenha o maior nível de flexibilidade analítica possível evitando perda de informação e aumentando a reutilização das tabelas fato.*
+*Optei por manter todas as tabelas de fato em granularidade diária, para garantir que o modelo preserve a granularidade original do dataset mantenha o maior nível de flexibilidade analítica possível evitando perda de informação e aumentando a reutilização das tabelas fato. Optei também por não filtrar especificamente para Setembro/2020 dentro das tabelas fato, porque a fato deve sempre permanecer genérica e não filtrada, mantendo as boas práticas de DW*
 
 ---
 
@@ -62,10 +62,10 @@ As tabelas criadas no banco seguem este layout:
 
 ### **Fatos**
 
-* `ft_disponibilidade (id_ponto_venda, id_linha_produto, mes, ano, quantidade)`
-* `ft_disponibilidade_agregada (id_ponto_venda, mes, ano, quantidade)`
-* `ft_ponto_extra (id_ponto_venda, id_linha_produto, mes, ano, soma_pontos)`
-* `ft_ponto_extra_agregada (id_ponto_venda, mes, ano, soma_pontos)`
+* `ft_disponibilidade (id_ponto_venda, id_linha_produto, data_ref, quantidade)`
+* `ft_disponibilidade_agregada (id_ponto_venda, data_ref, quantidade)`
+* `ft_ponto_extra (id_ponto_venda, id_linha_produto, data_ref, soma_pontos)`
+* `ft_ponto_extra_agregada (id_ponto_venda, data_ref, soma_pontos)`
 
 ---
 
@@ -111,7 +111,6 @@ Regras aplicadas:
 
 * Filtrar apenas registros com `TIPO_COLETA = 'Disponibilidade'`
 * Contar ocorrências onde `VALOR = 'SIM'`
-* Extrair mês/ano = Setembro/2020
 * Popular:
 
   * **ft_disponibilidade**
@@ -125,7 +124,6 @@ Regras aplicadas:
 
 * Filtrar registros com `TIPO_COLETA = 'Ponto Extra'`
 * Somar valores numéricos da coluna `VALOR`
-* Extrair mês/ano = Setembro/2020
 * Popular:
 
   * **ft_ponto_extra**
@@ -134,14 +132,23 @@ Regras aplicadas:
 ---
 
 ## **📊 Resultados (prints)**
-<img width="1301" height="557" alt="image" src="https://github.com/user-attachments/assets/8e10c851-c860-43bb-b5eb-c80ee3c64599" />
-<img width="1223" height="496" alt="image" src="https://github.com/user-attachments/assets/1122e557-018b-4680-9da3-25c15d358753" />
-<img width="1300" height="503" alt="image" src="https://github.com/user-attachments/assets/cc01cbba-f6d7-450c-b2f2-b72136d61f08" />
-<img width="716" height="541" alt="image" src="https://github.com/user-attachments/assets/cb60cd2a-25d7-4586-a090-bddce682125d" />
-<img width="509" height="767" alt="image" src="https://github.com/user-attachments/assets/8e061071-1c5f-453c-8786-5f767b2e9245" />
-<img width="640" height="658" alt="image" src="https://github.com/user-attachments/assets/ffd590d2-cda7-4fa0-8810-61ff49f4bd1c" />
-<img width="619" height="699" alt="image" src="https://github.com/user-attachments/assets/477ca725-66d8-45ae-b40a-4f1e14c9fa17" />
-<img width="667" height="742" alt="image" src="https://github.com/user-attachments/assets/4dffdae0-db83-45de-9122-cf737387c8e9" />
-<img width="586" height="606" alt="image" src="https://github.com/user-attachments/assets/873c44fb-add2-429e-8d29-a1763ca8e644" />
-<img width="680" height="770" alt="image" src="https://github.com/user-attachments/assets/84f82335-aea9-46eb-9dbf-31119b473a34" />
-<img width="564" height="620" alt="image" src="https://github.com/user-attachments/assets/bc00d001-12ff-4d90-a751-43fa4e207193" />
+<img width="1283" height="909" alt="image" src="https://github.com/user-attachments/assets/b5f82663-425c-4783-b4df-575689b9331a" />
+<img width="1214" height="901" alt="image" src="https://github.com/user-attachments/assets/4243938c-e908-44a2-9e05-a74df131769e" />
+<img width="1298" height="884" alt="image" src="https://github.com/user-attachments/assets/6dcf9e70-453a-4558-b0fd-a7652f023abd" />
+<img width="773" height="905" alt="image" src="https://github.com/user-attachments/assets/e872c152-df1e-4439-859b-cc1b4b16ee0e" />
+<img width="511" height="836" alt="image" src="https://github.com/user-attachments/assets/7a9677ad-fba6-4b80-b9d1-a2b6cb6e9696" />
+<img width="636" height="832" alt="image" src="https://github.com/user-attachments/assets/640c48c4-b6f1-4be0-82ec-9a65025af5c4" />
+<img width="602" height="835" alt="image" src="https://github.com/user-attachments/assets/6f4266e6-49a2-4dd5-a177-bbe9239c7520" />
+<img width="667" height="839" alt="image" src="https://github.com/user-attachments/assets/9f566a8f-c623-4af7-859d-ae2fbc3b876c" />
+<img width="513" height="824" alt="image" src="https://github.com/user-attachments/assets/25f7de78-d65a-49e6-8e33-1220d47f4886" />
+<img width="698" height="829" alt="image" src="https://github.com/user-attachments/assets/faee4e97-6a3a-4472-92f0-c903f47c7f8a" />
+<img width="519" height="835" alt="image" src="https://github.com/user-attachments/assets/0cb56ba1-2cbf-498e-a99c-bb94760f60b5" />
+
+
+
+
+
+
+
+
+
