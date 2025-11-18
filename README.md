@@ -6,6 +6,8 @@ Meu perfil Github certo: https://github.com/joaozang (Estou recuperando ele :dis
 Este projeto apresenta a construção de um processo ETL utilizando **Pentaho Data Integration (PDI)** para ingestão, transformação e carga de dados referentes a coletas realizadas em pontos de venda, com base no dataset `DATASET_TESTE_DE.csv`.
 Além disso, inclui a criação de um **modelo dimensional** no PostgreSQL e um **job principal** orquestrando todas as transformações.
 
+*Optei por manter todas as tabelas de fato em granularidade diária, para garantir que o modelo preserve a granularidade original do dataset mantenha o maior nível de flexibilidade analítica possível evitando perda de informação e aumentando a reutilização das tabelas fato.*
+
 ---
 
 ## **📦 Requisitos Mínimos**
