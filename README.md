@@ -1,5 +1,5 @@
 ---
-Meu perfil Github certo: https://github.com/joaozang (Estou recuperando ele :disappointed:)
+Meu perfil Github certo: https://github.com/joaozang (Estou recuperando ele)
 # **Projeto de ETL com Pentaho Data Integration (PDI) — Modelo Dimensional**
 
 Este projeto apresenta a construção de um processo ETL utilizando **Pentaho Data Integration (PDI)** para ingestão, transformação e carga de dados referentes a coletas realizadas em pontos de venda, com base no dataset `DATASET_TESTE_DE.csv`.
