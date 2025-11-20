@@ -431,13 +431,13 @@
     <created_date>2025/11/17 15:51:27.149</created_date>
     <modified_user>-</modified_user>
     <modified_date>2025/11/17 15:51:27.149</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>PostgreSQL</name>
+    <name>pg</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
@@ -451,7 +451,7 @@
     <attributes>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>Y</attribute>
+        <attribute>N</attribute>
       </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
@@ -467,7 +467,7 @@
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>N</attribute>
+        <attribute>Y</attribute>
       </attribute>
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
@@ -489,68 +489,38 @@
   </connection>
   <order>
     <hop>
-      <from>Select values</from>
+      <from>Calendario - SV – Selecionar Colunas</from>
       <to>Calculator - Mês / Ano</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>CSV</from>
+      <to>Calendario - SV – Selecionar Colunas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CSV</from>
+      <to>PDV- SV – Selecionar Colunas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CSV</from>
+      <to>Linha Produto - SV – Selecionar Colunas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Calculator - Mês / Ano</from>
-      <to>Sort rows</to>
+      <to>DIM Calendário – Lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows</from>
-      <to>Unique rows</to>
+      <from>Linha Produto - SV – Selecionar Colunas</from>
+      <to>DIM Linha Produto - Lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>Sort rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 2</from>
-      <to>Unique rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 3</from>
-      <to>Sort rows 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 3</from>
-      <to>Unique rows 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CSV</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CSV</from>
-      <to>Select values 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CSV</from>
-      <to>Select values 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows 3</from>
-      <to>dim_linha_produto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows</from>
-      <to>dim_calendario</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows 2</from>
-      <to>dim_pdv</to>
+      <from>PDV- SV – Selecionar Colunas</from>
+      <to>DIM PDV - Lookup</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -565,7 +535,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>D:\Downloads\João Zang\teste_tecnico_-_data_engineer\dataset_teste_de (1).csv</filename>
+    <filename>${Internal.Entry.Current.Directory}/dataset_teste_de (1).csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -584,7 +554,7 @@
         <name>ID_DATASET</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -595,7 +565,7 @@
         <name>ID_PONTO_VENDA</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -606,7 +576,7 @@
         <name>NOME_PONTO_VENDA</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>14</length>
@@ -617,7 +587,7 @@
         <name>PERFIL_PONTO_VENDA</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>9</length>
@@ -628,7 +598,7 @@
         <name>DATA</name>
         <type>Date</type>
         <format>dd/MM/yyyy</format>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>-1</length>
@@ -639,7 +609,7 @@
         <name>ID_LINHA_PRODUTO</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -650,7 +620,7 @@
         <name>NOME_LINHA_PRODUTO</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>18</length>
@@ -661,7 +631,7 @@
         <name>MARCA_LINHA_PRODUTO</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>13</length>
@@ -672,7 +642,7 @@
         <name>TIPO_COLETA</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>15</length>
@@ -683,7 +653,7 @@
         <name>VALOR</name>
         <type>String</type>
         <format/>
-        <currency>£</currency>
+        <currency>BRL</currency>
         <decimal>.</decimal>
         <group>,</group>
         <length>3</length>
@@ -756,13 +726,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
+      <xloc>832</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
+    <name>Calendario - SV – Selecionar Colunas</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -788,13 +758,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>592</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 2</name>
+    <name>PDV- SV – Selecionar Colunas</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -807,12 +777,55 @@
     <fields>
       <field>
         <name>ID_PONTO_VENDA</name>
+        <rename/>
       </field>
       <field>
         <name>NOME_PONTO_VENDA</name>
+        <rename/>
       </field>
       <field>
         <name>PERFIL_PONTO_VENDA</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Linha Produto - SV – Selecionar Colunas</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ID_LINHA_PRODUTO</name>
+        <rename/>
+      </field>
+      <field>
+        <name>NOME_LINHA_PRODUTO</name>
+        <rename/>
+      </field>
+      <field>
+        <name>MARCA_LINHA_PRODUTO</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -826,50 +839,13 @@
     </remotesteps>
     <GUI>
       <xloc>480</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 3</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>ID_LINHA_PRODUTO</name>
-      </field>
-      <field>
-        <name>NOME_LINHA_PRODUTO</name>
-      </field>
-      <field>
-        <name>MARCA_LINHA_PRODUTO</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
+    <name>DIM Calendário – Lookup</name>
+    <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -878,396 +854,36 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>DATA_REF</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>MES</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>ANO</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>ID_PONTO_VENDA</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>NOME_PONTO_VENDA</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>PERFIL_PONTO_VENDA</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 3</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>ID_LINHA_PRODUTO</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>NOME_LINHA_PRODUTO</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>MARCA_LINHA_PRODUTO</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>DATA_REF</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>MES</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>ANO</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows 2</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>ID_PONTO_VENDA</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>NOME_PONTO_VENDA</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>PERFIL_PONTO_VENDA</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows 3</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>ID_LINHA_PRODUTO</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>NOME_LINHA_PRODUTO</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>MARCA_LINHA_PRODUTO</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_linha_produto</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>PostgreSQL</connection>
-    <schema>public</schema>
-    <table>dim_linha_produto</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>ID_LINHA_PRODUTO</column_name>
-        <stream_name>ID_LINHA_PRODUTO</stream_name>
-      </field>
-      <field>
-        <column_name>NOME_LINHA_PRODUTO</column_name>
-        <stream_name>NOME_LINHA_PRODUTO</stream_name>
-      </field>
-      <field>
-        <column_name>MARCA_LINHA_PRODUTO</column_name>
-        <stream_name>MARCA_LINHA_PRODUTO</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>944</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_calendario</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>PostgreSQL</connection>
     <schema>public</schema>
     <table>dim_calendario</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <connection>pg</connection>
+    <commit>100</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
     <fields>
-      <field>
-        <column_name>DATA_REF</column_name>
-        <stream_name>DATA_REF</stream_name>
-      </field>
-      <field>
-        <column_name>MES</column_name>
-        <stream_name>MES</stream_name>
-      </field>
-      <field>
-        <column_name>ANO</column_name>
-        <stream_name>ANO</stream_name>
-      </field>
+      <key>
+        <name>DATA_REF</name>
+        <lookup>DATA_REF</lookup>
+      </key>
+      <key>
+        <name>MES</name>
+        <lookup>MES</lookup>
+      </key>
+      <key>
+        <name>ANO</name>
+        <lookup>ANO</lookup>
+      </key>
+      <return>
+        <name>sk_calendario</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
     </fields>
+    <sequence/>
+    <last_update_field/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1277,14 +893,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1024</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dim_pdv</name>
-    <type>TableOutput</type>
+    <name>DIM Linha Produto - Lookup</name>
+    <type>DimensionLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1293,37 +909,46 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>PostgreSQL</connection>
     <schema>public</schema>
-    <table>dim_pdv</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <table>dim_linha_produto</table>
+    <connection>pg</connection>
+    <commit>100</commit>
+    <update>Y</update>
     <fields>
-      <field>
-        <column_name>ID_PONTO_VENDA</column_name>
-        <stream_name>ID_PONTO_VENDA</stream_name>
-      </field>
-      <field>
-        <column_name>NOME_PONTO_VENDA</column_name>
-        <stream_name>NOME_PONTO_VENDA</stream_name>
-      </field>
-      <field>
-        <column_name>PERFIL_PONTO_VENDA</column_name>
-        <stream_name>PERFIL_PONTO_VENDA</stream_name>
-      </field>
+      <key>
+        <name>ID_LINHA_PRODUTO</name>
+        <lookup>ID_LINHA_PRODUTO</lookup>
+      </key>
+      <key>
+        <name>NOME_LINHA_PRODUTO</name>
+        <lookup>NOME_LINHA_PRODUTO</lookup>
+      </key>
+      <key>
+        <name>MARCA_LINHA_PRODUTO</name>
+        <lookup>MARCA_LINHA_PRODUTO</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>date_from</from>
+        <to>date_to</to>
+      </date>
+      <return>
+        <name>sk_linha_produto</name>
+        <rename/>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+        <version>version</version>
+      </return>
     </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1333,7 +958,72 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>920</xloc>
+      <xloc>768</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM PDV - Lookup</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_pdv</table>
+    <connection>pg</connection>
+    <commit>100</commit>
+    <update>Y</update>
+    <fields>
+      <key>
+        <name>ID_PONTO_VENDA</name>
+        <lookup>ID_PONTO_VENDA</lookup>
+      </key>
+      <key>
+        <name>NOME_PONTO_VENDA</name>
+        <lookup>NOME_PONTO_VENDA</lookup>
+      </key>
+      <key>
+        <name>PERFIL_PONTO_VENDA</name>
+        <lookup>PERFIL_PONTO_VENDA</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>date_from</from>
+        <to>date_to</to>
+      </date>
+      <return>
+        <name>sk_pdv</name>
+        <rename/>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+        <version>version</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>

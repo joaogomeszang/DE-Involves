@@ -293,7 +293,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:\Downloads\João Zang\teste_tecnico_-_data_engineer\Questão 8.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/Questão 8.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -322,7 +322,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>304</xloc>
-      <yloc>336</yloc>
+      <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -344,7 +344,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>160</xloc>
-      <yloc>336</yloc>
+      <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -383,7 +383,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>432</xloc>
-      <yloc>336</yloc>
+      <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -422,7 +422,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>592</xloc>
-      <yloc>336</yloc>
+      <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
