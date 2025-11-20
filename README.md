@@ -8,6 +8,63 @@ O Data Warehouse é estruturado em **PostgreSQL**, com execução orquestrada vi
 
 ---
 
+## **📦 Requisitos Mínimos**
+
+### **1. Docker**
+
+* Docker **20+**
+* Docker Compose *(opcional)*
+
+### **2. Pentaho Data Integration (PDI)**
+
+* Versões recomendadas: **8.3, 9.1, 9.3 ou 10.x**
+* Compatível com Windows, Linux e MacOS
+
+### **3. Java Development Kit (JDK) ⚠️ Obrigatório**
+
+* O Pentaho precisa de uma JDK instalada no sistema.
+
+Recomendações:
+
+* JDK 8 (mais estável e 100% compatível)
+
+---
+
+## **🐘 Subindo o Banco de Dados com Docker**
+
+Navegue até a **raiz do projeto** e execute:
+
+```bash
+docker build -t meu_banco .
+docker run --name pg_container -p 5432:5432 -d meu_banco
+docker start pg_container
+```
+
+---
+
+### **🔌 Acessando o PostgreSQL dentro do container**
+
+```bash
+docker exec -it pg_container psql -U meu_usuario -d meu_banco
+```
+
+Assim que acessar o PostgreSQL, **execute o conteúdo do arquivo `init.sql`** que está na raiz do projeto.
+
+---
+
+## **🔧 Credenciais usadas no Pentaho (Table Output)**
+
+Use estas variáveis ao configurar as Table Output das transformações das questões **8, 9 e 10**:
+
+```
+POSTGRES_USER=meu_usuario
+POSTGRES_PASSWORD=minha_senha
+POSTGRES_DB=meu_banco
+PORT=5432
+```
+
+---
+
 # 🏛️ **Arquitetura do Data Warehouse**
 
 O modelo dimensional é composto por três dimensões e quatro tabelas fato.
