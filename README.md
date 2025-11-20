@@ -1,5 +1,8 @@
 Meu perfil Github certo: https://github.com/joaozang (Estou recuperando ele :disappointed:)
 
+Para qualquer dúvida, sugestão ou auxílio relacionado ao projeto:  
+**joaozanggomes@gmail.com**
+
 ## 📌 **Visão Geral do Projeto**
 
 Este projeto implementa um pipeline ETL completo utilizando **Pentaho Data Integration (PDI)** para processar dados de coletas realizadas em pontos de venda, construir dimensões com **surrogate keys**, modelar fatos diárias e aplicar **Slowly Changing Dimensions (SCD Tipo 2)** para dimensões que podem mudar ao longo do tempo.
