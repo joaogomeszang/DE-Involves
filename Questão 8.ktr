@@ -462,6 +462,10 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
         <code>PORT_NUMBER</code>
         <attribute>5432</attribute>
       </attribute>
@@ -764,86 +768,6 @@
     </GUI>
   </step>
   <step>
-    <name>PDV- SV – Selecionar Colunas</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>ID_PONTO_VENDA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>NOME_PONTO_VENDA</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PERFIL_PONTO_VENDA</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Linha Produto - SV – Selecionar Colunas</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>ID_LINHA_PRODUTO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>NOME_LINHA_PRODUTO</name>
-        <rename/>
-      </field>
-      <field>
-        <name>MARCA_LINHA_PRODUTO</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>DIM Calendário – Lookup</name>
     <type>CombinationLookup</type>
     <description/>
@@ -919,19 +843,21 @@
         <name>ID_LINHA_PRODUTO</name>
         <lookup>ID_LINHA_PRODUTO</lookup>
       </key>
-      <key>
-        <name>NOME_LINHA_PRODUTO</name>
-        <lookup>NOME_LINHA_PRODUTO</lookup>
-      </key>
-      <key>
-        <name>MARCA_LINHA_PRODUTO</name>
-        <lookup>MARCA_LINHA_PRODUTO</lookup>
-      </key>
       <date>
         <name/>
         <from>date_from</from>
         <to>date_to</to>
       </date>
+      <field>
+        <name>NOME_LINHA_PRODUTO</name>
+        <lookup>nome_linha_produto</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MARCA_LINHA_PRODUTO</name>
+        <lookup>marca_linha_produto</lookup>
+        <update>Insert</update>
+      </field>
       <return>
         <name>sk_linha_produto</name>
         <rename/>
@@ -945,8 +871,8 @@
     <max_year>2199</max_year>
     <cache_size>5000</cache_size>
     <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
+    <use_start_date_alternative>Y</use_start_date_alternative>
+    <start_date_alternative>trans_start</start_date_alternative>
     <start_date_field_name/>
     <useBatch>N</useBatch>
     <attributes/>
@@ -984,19 +910,21 @@
         <name>ID_PONTO_VENDA</name>
         <lookup>ID_PONTO_VENDA</lookup>
       </key>
-      <key>
-        <name>NOME_PONTO_VENDA</name>
-        <lookup>NOME_PONTO_VENDA</lookup>
-      </key>
-      <key>
-        <name>PERFIL_PONTO_VENDA</name>
-        <lookup>PERFIL_PONTO_VENDA</lookup>
-      </key>
       <date>
         <name/>
         <from>date_from</from>
         <to>date_to</to>
       </date>
+      <field>
+        <name>PERFIL_PONTO_VENDA</name>
+        <lookup>perfil_ponto_venda</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NOME_PONTO_VENDA</name>
+        <lookup>nome_ponto_venda</lookup>
+        <update>Insert</update>
+      </field>
       <return>
         <name>sk_pdv</name>
         <rename/>
@@ -1012,7 +940,7 @@
     <preload_cache>N</preload_cache>
     <use_start_date_alternative>N</use_start_date_alternative>
     <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name/>
+    <start_date_field_name>date_to</start_date_field_name>
     <useBatch>N</useBatch>
     <attributes/>
     <cluster_schema/>
@@ -1023,7 +951,84 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>880</xloc>
+      <xloc>896</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Linha Produto - SV – Selecionar Colunas</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ID_LINHA_PRODUTO</name>
+      </field>
+      <field>
+        <name>NOME_LINHA_PRODUTO</name>
+      </field>
+      <field>
+        <name>MARCA_LINHA_PRODUTO</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>PDV- SV – Selecionar Colunas</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ID_PONTO_VENDA</name>
+        <rename/>
+      </field>
+      <field>
+        <name>NOME_PONTO_VENDA</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PERFIL_PONTO_VENDA</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
